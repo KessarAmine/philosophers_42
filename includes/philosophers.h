@@ -6,7 +6,7 @@
 /*   By: kmohamed <kmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 18:14:26 by kmohamed          #+#    #+#             */
-/*   Updated: 2023/04/22 21:28:27 by kmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/22 21:48:09 by kmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ typedef enum	s_erros
 	HEAP_ERROR
 }				t_erros;
 
-void		exit_simulation( t_philosophers_env *env);
-void		throw_error(t_erros error, t_philosophers_env *env);
-void		env_init(t_philosophers_env *env);
+int			exit_simulation( t_philosophers_env *env);
+int			throw_error(t_erros error, t_philosophers_env *env);
+int			env_init(t_philosophers_env *env);
 long int	ft_atoi(const char *str);
-void		input_read(char **argv, t_philosophers_env *env);
+int			nput_read(char **argv, t_philosophers_env *env);
 int			is_number(char *av);
-void		create_philosophers(t_philosophers_env *env);
+int			create_philosophers(t_philosophers_env *env);
