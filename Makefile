@@ -6,7 +6,7 @@
 #    By: kmohamed <kmohamed@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/19 18:54:40 by kmohamed          #+#    #+#              #
-#    Updated: 2023/04/22 13:35:17 by kmohamed         ###   ########.fr        #
+#    Updated: 2023/04/22 18:02:38 by kmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC_PATH = src/
 OBJ_PATH = obj/
 
 SRC		= init_philosophers.c \
-		errors.c \
+		exit_points.c \
 		utils.c \
 		memory.c \
 
