@@ -6,7 +6,7 @@
 /*   By: kmohamed <kmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 18:17:29 by kmohamed          #+#    #+#             */
-/*   Updated: 2023/04/22 21:48:29 by kmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/22 22:18:41 by kmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	create_philosophers(t_philosophers_env *env)
 	i = -1;
 	while (++i < (int) env->size)
 	{
+		env->philosophers[i].id = i + 1;
 		env->philosophers[i].leftfork = &env->chop_sticks[i];
 		env->philosophers[i].rightfork = &env->chop_sticks[(i + 1) % env->size];
 		env->philosophers[i].is_eating = 0;
@@ -76,12 +77,13 @@ int	env_init(t_philosophers_env *env)
 	i = -1;
 	while (++i < (int) env->size)
 		pthread_mutex_init(&env->chop_sticks[i], NULL);
+	pthread_mutex_init(&env->env_monitoring, NULL);
 	return (0);
 }
 
 //	first we init our envirment and prepare our memory_blocks
 //	we create the philosophers threads and the needed mutexes
-//	we start the monitoring
+//	we start the scheduler
 int	main(int argc, char **argv)
 {
 	t_philosophers_env	env;

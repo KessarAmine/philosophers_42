@@ -6,7 +6,7 @@
 /*   By: kmohamed <kmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:12:21 by kmohamed          #+#    #+#             */
-/*   Updated: 2023/04/22 21:46:29 by kmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/22 21:54:33 by kmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,32 +37,26 @@ void	*philosophers_routine(t_philosopher *philo)
 	return (0);
 }
 
-void	join_threads(t_philosophers_env *env)
+void	threads_join(t_philosophers_env *env)
 {
 	int	i;
 
-	i = 0;
-	while (i < env->size)
-	{
+	i = -1;
+	while (++i < env->size)
 		pthread_join(env->philosophers[i].thread_id, NULL);
-		i++;
-	}
 }
 
-void	begin_philosophers_routine(t_philosophers_env *env)
+void	threads_start(t_philosophers_env *env)
 {
 	int	            i;
     struct timeval current_time;
 
-	i = 0;
+	i = -1;
 	gettimeofday(&current_time, NULL);
     env->time_starting = current_time.tv_usec;
-	while (i < env->size)
-	{
+	while (++i < env->size)
 		pthread_create(&env->philosophers[i].thread_id,
 			NULL, &philosophers_routine, (void *)&env->philosophers[i]);
-		i++;
-	}
 	i = -1;
 	while (++i < env->size)
 		pthread_join(env->philosophers[i].thread_id, NULL);
