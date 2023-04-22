@@ -6,7 +6,7 @@
 /*   By: kmohamed <kmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 18:14:26 by kmohamed          #+#    #+#             */
-/*   Updated: 2023/04/22 18:52:48 by kmohamed         ###   ########.fr       */
+/*   Updated: 2023/04/22 21:28:27 by kmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,22 @@
 
 typedef struct	s_philosopher
 {
-	int			id;
-	pthread_t	*thread_id;
-	int			has_leftfork;
-	int			has_rightfork;
-	int			last_meal;
-	int			is_eating;
-	int			time_to_die;
-	int			time_to_sleep;
-	int			time_to_eat;
-	int			number_of_meals;
+	int					id;
+	pthread_t			*thread_id;
+	pthread_mutex_t		*leftfork;
+	pthread_mutex_t		*rightfork;
+	int					last_meal;
+	int					is_eating;
+	int					time_to_die;
+	int					time_to_sleep;
+	int					time_to_eat;
+	int					number_of_meals;
+	t_philosophers_env	*shared_memory;
 }				t_philosopher;
 
 typedef	struct	s_philosophers_env
 {
-	void			*memory_list;
+	void			*memory_blocks;
 	t_philosopher	*philosophers;
 	pthread_mutex_t	*chop_sticks;
 	size_t			size;
@@ -41,6 +42,7 @@ typedef	struct	s_philosophers_env
 	int				time_to_sleep;
 	int				number_of_meals;
 	int				philosopher_dead;
+	int				time_starting;
 }				t_philosophers_env;
 
 typedef enum	s_erros
